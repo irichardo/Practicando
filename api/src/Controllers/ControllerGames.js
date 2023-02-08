@@ -1,8 +1,9 @@
 const  axios = require('axios');
 const {videogame, Genres} = require('../db.js');
-const {API_KEY} = process.env;
+
+// const {API_KEY} = process.env;
 const {Router} = require ('express');
-const router = Router();
+// const router = Router();
 
 const cleanArray = (arr) =>{
     arr.map((e)=>{
@@ -32,6 +33,22 @@ const cleanArray2 = (arr) =>{
     })
 }
 
+const apiraw = async (a) =>{
+    const apiwild = []
+       let n=a
+     
+       let arr=(await axios.get(`https://api.rawg.io/api/games?key=2a9362cde1e9425f9100cb457aad7d42&page=2`).data)
+        // while(n == a+3){
+        //     arr=(await axios.get(`https://api.rawg.io/api/games?key=2a9362cde1e9425f9100cb457aad7d42&page=2`).data)
+        //     apiwild.push(arr)
+        //     n++
+        // }console.log(arr); 
+        return arr
+    }
+    
+console.log(apiraw());
+    
+    
 const getAllGames = async () => {
     const databaseGames = await videogame.findAll({
         include: {
@@ -42,8 +59,9 @@ const getAllGames = async () => {
             }
         }
     });
-    const apiGamesRaw = (await axios.get(`https://api.rawg.io/api/games?key=2a9362cde1e9425f9100cb457aad7d42&page=${i}`)).data;
 
+    const apiGamesRaw = (await axios.get(`https://api.rawg.io/api/games?key=2a9362cde1e9425f9100cb457aad7d42`)).data;
+console.log(apiGamesRaw);
     const apiGames = cleanArray(apiGamesRaw)
 
     const bddGames = cleanArray2(databaseGames)
@@ -75,7 +93,7 @@ const searchGameByName = async (name) => {
 
 
 
-module.exports={searchGameByName, getAllGames}
+module.exports = {searchGameByName, getAllGames}
 
 
 

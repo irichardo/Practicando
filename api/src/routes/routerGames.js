@@ -4,3 +4,5 @@ const routerGames = express.Router()
 const {getGamesHandler} = require("../Handlers/GameHandler")
 
 routerGames.get('/', getGamesHandler)
+
+module.exports = routerGames
