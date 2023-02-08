@@ -16,9 +16,8 @@ sequelize.define('props',{
 
 })
 
-console.log("Hola mundo soy Odette ando probando lo de las branch");
-console.log("Hola mundo soy Odette ando probando lo de las branch");
-console.log("Hola mundo soy Odette ando probando lo de las branch");
+console.log("Hola mundo soy Odette ando probando lo de las branch intento 2 con origin development");
+
 
 
 }
